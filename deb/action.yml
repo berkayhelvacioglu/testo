@@ -13,7 +13,7 @@ runs:
       shell: bash
       run: |
         sudo apt-get install devscripts 
-        cd  src/packages/postgresql-14-pgroonga/debian
+        cd  src/packages/postgresql-14-pgroonga
         echo "ls start"
         ls
         dpkg-buildpackage -us -uc
