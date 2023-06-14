@@ -13,7 +13,7 @@ runs:
       shell: bash
       run: |
         sudo apt-get install devscripts 
-       
+      
         dpkg-buildpackage -us -uc
         mkdir -p /out/packages
         cp ./*.deb /out/packages
