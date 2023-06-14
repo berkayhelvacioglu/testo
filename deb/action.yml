@@ -14,6 +14,7 @@ runs:
       run: |
         sudo apt-get install devscripts 
         cd  src/packages/postgresql-14-pgroonga/debian
+        echo "ls start"
         ls
         dpkg-buildpackage -us -uc
         mkdir -p /out/packages
