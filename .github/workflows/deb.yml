@@ -1,0 +1,26 @@
+name: Build pgroonga deb
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # First, checkout source code
+      # https://github.com/pgroonga/pgroonga
+      - name: Checkout source code
+        uses: actions/checkout@v3
+        with:
+          repository: pgroonga/pgroonga
+          ref: master
+          token: ${{ secrets.PAT }}
+          path: src
+         
+     # "actions/checkout@v3" deletes "src" path so because of that I upload artifact     
+      - uses: actions/upload-artifact@v3
+        with:
+          name: source-codes
+          path: src
+      # Checkout the action which I created
+      - uses: actions/checkout@v3
+      - uses: ./deb/
+        name: "Create deb package with my action"
+       
