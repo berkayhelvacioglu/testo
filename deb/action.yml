@@ -1,0 +1,20 @@
+name: deb
+description: Build deb package
+runs:
+  using: "composite"
+  steps:  
+    - uses: actions/download-artifact@v3
+      with:
+        name: source-codes
+        path: src
+     
+     # build pgroonga extension. I have followed/tried debian build rules :)
+    - name: Build deb packages
+      shell: bash
+      run: |
+        sudo apt-get install devscripts 
+       
+        dpkg-buildpackage -us -uc
+        mkdir -p /out/packages
+        cp ./*.deb /out/packages
+        
